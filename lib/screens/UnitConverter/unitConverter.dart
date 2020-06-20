@@ -15,7 +15,7 @@ class UnitConverter extends StatefulWidget {
 }
 
 class _UnitConverterState extends State<UnitConverter> {
-  List<Container> unitWidgets() {
+  /*  List<Container> unitWidgets() {
     return widget.units.map((Unit unit) {
       return Container(
         color: widget._color,
@@ -33,10 +33,43 @@ class _UnitConverterState extends State<UnitConverter> {
         ),
       );
     }).toList();
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
+    final input = Theme(
+      data: new ThemeData(
+        primaryColor: widget._color,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelStyle: Theme.of(context).textTheme.headline4,
+                labelText: 'Input',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(0.0),
+                ),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ],
+        ),
+      ),
+    );
+
+    final arrows = RotatedBox(
+      quarterTurns: 1,
+      child: Icon(
+        Icons.compare_arrows,
+        size: 40.0,
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1.0,
@@ -46,8 +79,10 @@ class _UnitConverterState extends State<UnitConverter> {
         ),
         backgroundColor: widget._color,
       ),
-      body: ListView(
-        children: unitWidgets(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [input, arrows],
       ),
     );
   }
