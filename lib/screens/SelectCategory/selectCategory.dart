@@ -3,8 +3,19 @@ import 'package:flutter/material.dart';
 import '../../models/category.dart';
 import '../../theme/style.dart';
 
-class SelectCategory extends StatelessWidget {
+class SelectCategory extends StatefulWidget {
+  SelectCategory({Key key}) : super(key: key);
+
+  @override
+  _SelectCategoryState createState() => _SelectCategoryState();
+}
+
+class _SelectCategoryState extends State<SelectCategory> {
   final List<Category> categories = Category.fetchAll();
+
+  CategoryTile _categoryTileBuilder(BuildContext context, Category category) {
+    return CategoryTile(category.name, category.iconPath, category.color);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +32,5 @@ class SelectCategory extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  CategoryTile _categoryTileBuilder(BuildContext context, Category category) {
-    return CategoryTile(category.name, category.iconPath, category.color);
   }
 }
